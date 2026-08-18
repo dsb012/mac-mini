@@ -12,6 +12,12 @@ One-pager for getting the new Mac mini ready to start the migration. Full reason
 - [ ] **Anytune** — Chronotron replacement, running on the mini itself — Mac App Store, id 722444976 (`mas install 722444976`)
 - [ ] **VeraCrypt** — **use the `veracrypt-fuse-t` cask**, not plain `veracrypt` (`brew install --cask veracrypt-fuse-t`). Corrected 2026-08-09: plain `veracrypt` actually depends on **macFUSE**, which needs a kernel-extension approval dance in System Settings on Apple Silicon. The `veracrypt-fuse-t` cask pulls in **fuse-t** instead and needs no kext approval — this replaces the earlier "install FUSE-T first, then VeraCrypt separately" plan with one command.
 
+## General utilities (added 2026-08-19)
+- [ ] **Rectangle** — window management/snapping — `brew install --cask rectangle`
+- [ ] **AltTab** — Windows-style app switcher — `brew install --cask alt-tab`
+- [ ] **iTerm2** — terminal — `brew install --cask iterm2`
+- [ ] **Ghostty** — terminal — `brew install --cask ghostty`
+
 ## 2. Peripheral drivers / control apps
 - [ ] **Focusrite Control** — for the Scarlett 8i6 (confirmed 2026-08-14 via Windows registry that this original app, not "Focusrite Control 2", is what's actually installed and what the custom Stream Deck dial plugin's FC1 socket connects to — see `Home Projects\focusrite-streamdeck-dial\`). On Homebrew: `brew install --cask focusrite-control` (Control 2 is the separate `focusrite-control-2` cask — don't use that one)
 - [ ] **Elgato Stream Deck** software — native macOS build — `brew install --cask elgato-stream-deck`

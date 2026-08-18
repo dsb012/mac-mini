@@ -56,6 +56,10 @@ declare -A CASKS=(
   ["Focusrite Control"]="focusrite-control"            # NOT focusrite-control-2 — confirmed 2026-08-14 this (not Control 2) is what the custom Stream Deck dial plugin's FC1 socket actually needs
   ["Elgato Stream Deck"]="elgato-stream-deck"
   ["Ultimaker Cura"]="ultimaker-cura"
+  ["Rectangle"]="rectangle"
+  ["AltTab"]="alt-tab"
+  ["iTerm2"]="iterm2"
+  ["Ghostty"]="ghostty"
 )
 if [ "$INSTALL_LOGI_OPTIONS" = true ]; then
   CASKS["Logi Options+"]="logi-options+"
