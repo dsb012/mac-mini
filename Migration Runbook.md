@@ -82,16 +82,16 @@ through in order.
 - [ ] Home Assistant still shows correct UPS status (should be unaffected by
       the Mac migration since it goes through the NAS, not the Mac — just confirm)
 
-## Decommission old Windows PC (only after everything above passes)
+## Decommission old Windows PC (decided 2026-08-19)
 
-- [ ] Keep the Windows PC powered and available as fallback until verification
-      is fully done — no fixed timeline yet, decide once migration is underway
-- [ ] Old C: SSD (Samsung 970 EVO Plus) → UGREEN 40Gbps TB4/USB4 enclosure —
-      not time-pressured, do whenever after the PC is retired
+- [ ] **Keep the Windows PC powered and running for 60 days after cutover**
+      (Aug 25 → ~Oct 24, 2026) as a fallback/safety buffer before decommissioning
+- [ ] After the 60-day mark: move the C: SSD (Samsung 970 EVO Plus) **as-is** into
+      the new UGREEN 40Gbps TB4/USB4 enclosure — **already ordered**, no purchase
+      needed at decommission time, just the physical swap
 - [ ] Confirm final resting place for the N: 4TB HDD (WD40EFAX) — currently
       planned to stay in this machine as the on-site backup copy of the NAS
 
 ## Open items not resolved by this runbook
 
 - AppleCare yes/no
-- Exact decommission timeline for the old PC (buffer period undecided)

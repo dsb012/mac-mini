@@ -33,10 +33,10 @@ Replaces the ~8-9 year old Windows desktop (ASUS PRIME H310M-A). Full deliberati
   this** — there never was a separate "1TB SSD" to buy; that was this same machine's C: drive (below),
   not a distinct item.
 - **Old C: SSD (Samsung 970 EVO Plus, 1TB NVMe)** → standalone **UGREEN 40Gbps TB4/USB4 enclosure**
-  (ASM2464PD chipset, ASIN B0F62NG7K3) in a rear Thunderbolt port — preserves near-native ~3600MB/s.
-  Only becomes available once this Windows machine is fully decommissioned, which naturally means
-  there's no timeline pressure on it — it was never going to be usable before then anyway. Possible
-  future use if the Mac mini's base 512GB feels tight later; not urgent, no action needed now.
+  (ASM2464PD chipset, ASIN B0F62NG7K3) — preserves near-native ~3600MB/s. **Decided 2026-08-19:
+  the Windows PC stays powered for a 60-day fallback buffer after cutover (Aug 25 → ~Oct 24,
+  2026), then the drive moves as-is into the enclosure** (already ordered) once actually
+  decommissioned. Possible future use if the Mac mini's base 512GB feels tight later.
 
 ## Displays
 - **Primary — LG 29WN600-W** (29" 21:9 UltraWide, 2560×1080 IPS, HDR10, FreeSync) → mini's **native HDMI port**, straight cable, no adapter (the USB-C→HDMI cable's adapter chip doesn't offer this native resolution, confirmed by testing)
