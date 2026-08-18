@@ -1,0 +1,49 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260806163503
+Username: DAVID\David
+RunAs User: DAVID\David
+Configuration Name: 
+Machine: DAVID (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1
+Process ID: 19636
+PSVersion: 5.1.26100.8875
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8875
+BuildVersion: 10.0.26100.8875
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+reg : ERROR: The parameter is incorrect.
+At C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\s
+cratchpad\extract_all_pitches.ps1:8 char:1
++ reg unload "HKU\$mountPoint" 2>&1 | Out-String | Write-Host
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: The parameter is incorrect.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+LOAD OUTPUT: The operation completed successfully.
+LASTEXITCODE: 0
+PS>TerminatingError(): "You cannot call a method on a null-valued expression."
+>> TerminatingError(): "You cannot call a method on a null-valued expression."
+>> TerminatingError(): "You cannot call a method on a null-valued expression."
+>> TerminatingError(): "You cannot call a method on a null-valued expression."
+>> TerminatingError(): "You cannot call a method on a null-valued expression."
+>> TerminatingError(): "You cannot call a method on a null-valued expression."
+>> TerminatingError(): "You cannot call a method on a null-valued expression."
+WALK ERROR: You cannot call a method on a null-valued expression.
+at Walk-Key, C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1: line 29
+at Walk-Key, C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1: line 65
+at Walk-Key, C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1: line 65
+at Walk-Key, C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1: line 65
+at Walk-Key, C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1: line 65
+at Walk-Key, C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1: line 65
+at Walk-Key, C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1: line 65
+at <ScriptBlock>, C:\Users\David\AppData\Local\Temp\claude\c--Users-David-Desktop-Home-Projects\7d422879-dfb4-45c2-b140-319526d97416\scratchpad\extract_all_pitches.ps1: line 72
+Total song entries found (all paths): 0
+Canonical (C:\Users\David\Music) entries written to CSV: 0
+**********************
+Windows PowerShell transcript end
+End time: 20260806163503
+**********************
