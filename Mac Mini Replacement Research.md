@@ -65,6 +65,8 @@ Replaces the ~8-9 year old Windows desktop (ASUS PRIME H310M-A). Full deliberati
 - MIDI routing — **staying with Bome MIDI Translator Pro** (native Mac build, already licensed, familiar, works well) rather than switching to macOS's built-in Audio MIDI Setup + IAC Driver
 - Backup provider is **Google Drive** (switched from IDrive)
 - **Home Assistant Companion app** — verified (Shortcuts, sensors, actionable notifications all confirmed via official HA docs)
+- **Dev tooling: git + uv** — relying on uv alone for Python (version/venv/package management), no separate `python` formula
+- **Zoom** — added to the cask list for video calls
 - Full install checklist: `Mac Software Setup Checklist.md`
 
 ## UPS monitoring

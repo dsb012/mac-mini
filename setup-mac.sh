@@ -46,7 +46,27 @@ fi
 
 brew update >/dev/null 2>&1 || true
 
-# ---- 1. brew casks --------------------------------------------------------
+# ---- 1. brew formulae (CLI tools) -----------------------------------------
+declare -A FORMULAE=(
+  ["git"]="git"
+  ["uv"]="uv"   # manages Python versions/venvs itself — no separate python formula needed
+)
+
+log "Homebrew formulae"
+for name in "${!FORMULAE[@]}"; do
+  token="${FORMULAE[$name]}"
+  if brew list "$token" >/dev/null 2>&1; then
+    ok "$name (already installed)"
+    continue
+  fi
+  if brew install "$token"; then
+    ok "$name"
+  else
+    fail "$name (brew install $token)"
+  fi
+done
+
+# ---- 2. brew casks --------------------------------------------------------
 # name -> homebrew cask token
 declare -A CASKS=(
   ["Visual Studio Code"]="visual-studio-code"
@@ -64,6 +84,7 @@ declare -A CASKS=(
   ["Spotify"]="spotify"
   ["Claude"]="claude"
   ["Signal"]="signal"
+  ["Zoom"]="zoom"
 )
 if [ "$INSTALL_LOGI_OPTIONS" = true ]; then
   CASKS["Logi Options+"]="logi-options+"
@@ -83,7 +104,7 @@ for name in "${!CASKS[@]}"; do
   fi
 done
 
-# ---- 2. Mac App Store apps -------------------------------------------------
+# ---- 3. Mac App Store apps -------------------------------------------------
 log "Mac App Store apps (via mas)"
 if ! command -v mas >/dev/null 2>&1; then
   brew install mas || fail "mas (App Store CLI)"
@@ -116,7 +137,7 @@ else
   skip "Anytune — mas unavailable"
 fi
 
-# ---- 3. Manual downloads ---------------------------------------------------
+# ---- 4. Manual downloads ---------------------------------------------------
 # These aren't packaged for brew/mas — proprietary installers and/or license
 # keys involved. Script just opens each vendor page so you can download,
 # log in, and enter your license where needed.
