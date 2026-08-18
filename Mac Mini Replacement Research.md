@@ -1,6 +1,8 @@
 # Mac Mini Replacement — Plan
 
-Replaces the ~8-9 year old Windows desktop (ASUS PRIME H310M-A). Full deliberation history has been trimmed — this is current state + plan only. Related docs in this folder: `Mac Software Setup Checklist.md` (install list), `USB Device Inventory.md` (raw peripheral scan).
+Replaces the ~8-9 year old Windows desktop (ASUS PRIME H310M-A). Full deliberation history has been trimmed — this is current state + plan only. Related docs: `Mac Software Setup Checklist.md` (install list, this folder), `docs/USB Device Inventory.md` (raw peripheral scan).
+
+**Folder layout:** this file + `Mac Software Setup Checklist.md` + `setup-mac.sh` + `focusrite-custom-mix.ff` (Focusrite mix config to import) are the active migration set, kept at top level. `docs/` holds supporting research (monitor comparison, USB inventory, the Elgato refund process). `reference/` holds source material (order confirmation, a setup photo, a keyboard shortcuts PDF). `chronotron-pitch-extraction/` is a self-contained sub-task (pulling pitch offset data out of Chronotron for the Anytune migration).
 
 ## Order
 - **Base M4 Mac mini** — 10-core CPU/GPU, 24GB RAM, 512GB SSD, Accessory Kit
@@ -47,6 +49,14 @@ Replaces the ~8-9 year old Windows desktop (ASUS PRIME H310M-A). Full deliberati
 - **Retiring the passive Mackie Big Knob** monitor controller from the chain — no longer part of the setup.
 - **Mac mini's audio → Focusrite Scarlett 8i6** (already on the Anker hub, see Hardware section above).
 - **MacBook Pro's audio → LG 29WN600-W built-in speakers**, used for conference calls.
+- **`focusrite-custom-mix.ff`** (this folder, renamed 2026-08-19 from `kemper.ff` for clarity) — Focusrite Control custom mix config (David's custom routing/mixes, originally named for the mix that routes the Kemper's send/return — not a Kemper amp/rig backup, despite the old name). Needs to be imported into Focusrite Control once installed on the Mac mini — confirm the import mechanism works with the macOS build of the app.
+
+## Migration staging (NAS)
+**`Z:\Mac Migration`** (on the Synology DS124) is the live payload staging folder — David is actively copying files there now. This is separate from this project folder (which is planning/docs only) and from the canonical Pictures/Videos/Music/Taxes shares alongside it on the same NAS. Contents as of 2026-08-19 survey:
+- **`Guitar\Current Guitar\*.rmbackup`** — a Kemper Rig Manager backup, but dated 2025-12-14 (~8 months stale). **Redo this with Tools → Backup Rig Manager Content right before the actual move** (see checklist's Rig Manager section) rather than relying on this one. `MyProfiler.csv` alongside it is just a rig-library catalog/export, not the audio data itself.
+- **`Guitar\Device Configs\`** — held **two old/stale Focusrite `.ff` files** (`FocusRite.ff` 2022, `scarlett.ff` 2023), both confirmed byte-different from the current one (`focusrite-custom-mix.ff` in this project folder, dated 2026-08-14) — the project-folder copy is the one to actually use; the NAS ones are historical. Also had `x-touch.bin` (X-Touch controller config) — **X-Touch confirmed retired/not in use (2026-08-19), skip it.**
+- **`Guitar\Guitar Programs\`** — shortcuts included "Focusrite Midi Control" and "Power Mixer" — **both confirmed unused leftovers (2026-08-19), not needed on the Mac.**
+- **`Stream Deck\`** — full set of Stream Deck button icon images (album art, guitar icons) — needed to rebuild Stream Deck profiles on the Mac; not otherwise tracked anywhere.
 
 ## Software
 - All originally-flagged blockers resolved — **no WSL/Hyper-V, Visual Studio, VirtualBox, or Steam needed**
@@ -57,8 +67,10 @@ Replaces the ~8-9 year old Windows desktop (ASUS PRIME H310M-A). Full deliberati
 - **Home Assistant Companion app** — verified (Shortcuts, sensors, actionable notifications all confirmed via official HA docs)
 - Full install checklist: `Mac Software Setup Checklist.md`
 
+## UPS monitoring
+- **CyberPower CP1000AVRLCD is monitored via the Synology DS124 NAS + Home Assistant (decided 2026-08-19)** — no PowerPanel Personal app needed on the Mac mini at all. Drops the whole "does PowerPanel Personal support Apple Silicon" question and the planned CyberPower support call — moot now, not just deferred. Removed from the setup checklist and `setup-mac.sh`.
+
 ## Open / to verify
-- **CyberPower PowerPanel Personal** — UPS model confirmed: **CyberPower CP1000AVRLCD** (1000VA/600W, 9 outlets, AVR, mini-tower). Web research (2026-08-09): this model is officially on CyberPower's PowerPanel-Personal-compatible list, and the Mac client supports macOS 14+ — but **CPU architecture (Apple Silicon vs. Intel/Rosetta) is still never stated**, and a third-party tracker still shows it as untested. **Call CyberPower support (1-877-297-6937, model CP1000AVRLCD)** for a real answer before trusting it for auto-shutdown. **Fallback:** this UPS is natively supported by open-source **NUT (Network UPS Tools)** via `usbhid-ups`, which has an Apple-Silicon-native Homebrew build (`brew install nut`) if CyberPower's own app doesn't pan out.
 - **AppleCare** — decide yes/no
-- `storage-cleanup` project's dedup needs to finish (canonical Pictures/Videos/Music/Taxes) before the 1TB external SSD purchase is finalized
+- `storage-cleanup` project's dedup — **done as of 2026-08-19** (canonical Pictures/Videos/Music/Taxes on the NAS)
 - Real-world KVM/display check once the mini is physically plugged in — proven on the other 2 machines, not yet the mini itself
