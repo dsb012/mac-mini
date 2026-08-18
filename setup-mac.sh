@@ -62,6 +62,7 @@ declare -A CASKS=(
   ["Ghostty"]="ghostty"
   ["Proton VPN"]="protonvpn"
   ["Spotify"]="spotify"
+  ["Claude"]="claude"
 )
 if [ "$INSTALL_LOGI_OPTIONS" = true ]; then
   CASKS["Logi Options+"]="logi-options+"

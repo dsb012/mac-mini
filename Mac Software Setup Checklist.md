@@ -20,6 +20,7 @@ One-pager for getting the new Mac mini ready to start the migration. Full reason
 - [ ] **Proton VPN** — `brew install --cask protonvpn` — sign in with existing account
 - [ ] **Spotify** — `brew install --cask spotify`
 - [ ] **Reolink Client** — not on Homebrew. Download directly from reolink.com/us/software-and-manual/ (official recommended method). May also be on the Mac App Store (id 1086871235) — unconfirmed for the US storefront, worth checking `mas search reolink` first.
+- [ ] **Claude** (native desktop app) — `brew install --cask claude`
 
 ## 2. Peripheral drivers / control apps
 - [ ] **Focusrite Control** — for the Scarlett 8i6 (confirmed 2026-08-14 via Windows registry that this original app, not "Focusrite Control 2", is what's actually installed and what the custom Stream Deck dial plugin's FC1 socket connects to — see `Home Projects\focusrite-streamdeck-dial\`). On Homebrew: `brew install --cask focusrite-control` (Control 2 is the separate `focusrite-control-2` cask — don't use that one)
