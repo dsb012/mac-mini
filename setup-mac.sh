@@ -60,6 +60,8 @@ declare -A CASKS=(
   ["AltTab"]="alt-tab"
   ["iTerm2"]="iterm2"
   ["Ghostty"]="ghostty"
+  ["Proton VPN"]="protonvpn"
+  ["Spotify"]="spotify"
 )
 if [ "$INSTALL_LOGI_OPTIONS" = true ]; then
   CASKS["Logi Options+"]="logi-options+"
@@ -120,8 +122,9 @@ log "Manual downloads (opening pages in your browser)"
 
 declare -A MANUAL=(
   ["Kemper macOS driver"]="https://www.kemper-amps.com/downloads"
-  ["CyberPower PowerPanel Personal for Mac"]="https://www.cyberpowersystems.com/product/software/power-panel-personal/powerpanel-personal-mac/"
+  ["Kemper Rig Manager"]="https://www.kemper-amps.com/downloads"
   ["Bome MIDI Translator Pro (log in for your licensed download)"]="https://www.bome.com/downloads"
+  ["Reolink Client (not on Homebrew)"]="https://reolink.com/us/software-and-manual/"
 )
 for name in "${!MANUAL[@]}"; do
   url="${MANUAL[$name]}"
@@ -141,11 +144,12 @@ fi
 cat <<'EOF'
 
 Still needs you, by hand:
-  - Kemper: pick the right macOS driver/Rig Manager download for your model, install it
-  - CyberPower: install PowerPanel Personal, then call 1-877-297-6937 (model CP1000AVRLCD)
-    to confirm Apple Silicon support before trusting it for auto-shutdown
+  - Kemper: install the macOS driver, then Rig Manager — restore the library from
+    Z:\Mac Migration\2026-08-18 16-09-47 - David.rmbackup via Tools > Restore Rig Manager Content
   - Bome MIDI Translator Pro: log into your Bome account for the licensed download + key
+  - Reolink Client: download from reolink.com (not packaged for Homebrew)
   - VeraCrypt (fuse-t): no kernel-extension approval needed (that's the point of the
     fuse-t backend) — should just work after install
-  - Sign into Google Drive, Google Chrome, and any App Store apps that were skipped
+  - Sign into Google Drive, Google Chrome, Proton VPN, Spotify, and any App Store apps
+    that were skipped
 EOF
