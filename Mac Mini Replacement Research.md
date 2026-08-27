@@ -39,16 +39,31 @@ Replaces the ~8-9 year old Windows desktop (ASUS PRIME H310M-A). Full deliberati
   decommissioned. Possible future use if the Mac mini's base 512GB feels tight later.
 
 ## Displays
-- **Primary — LG 29WN600-W** (29" 21:9 UltraWide, 2560×1080 IPS, HDR10, FreeSync) → mini's **native HDMI port**, straight cable, no adapter (the USB-C→HDMI cable's adapter chip doesn't offer this native resolution, confirmed by testing)
-- **Secondary — LG 24ML600M-B** (24" FHD 1920×1080 IPS) → **uni USB-C-to-HDMI cable** (ASIN B075V5JK36, active chip, 4K@60Hz) from a rear Thunderbolt port
-- Both feed the KVM's two HDMI inputs, same as the other two machines already on it
-- KVM confirmed capable of native 2560×1080 today via both the Windows PC and the MacBook Pro — not expected to be a bottleneck for the mini
+
+**Changed 2026-08-26: single-monitor setup.** The Dell S3425DW was purchased and is set up
+(confirmed running on the work MacBook Pro at native 3440x1440). Going forward the desk runs
+**one display for the near future** — the two LGs come out of the daily setup. Supersedes the
+dual-LG plan below, which is kept for reference in case a second head comes back.
+
+- **Only display — Dell S3425DW** (34" 21:9, 3440×1440 VA, 1800R, 120Hz panel, USB-C 65W PD, 2× HDMI 2.1 + 1× USB-C upstream). ~110 PPI, vs ~96 on the 29" LG and ~93 on the 24" — text renders ~13–16% smaller than the old setup at the same viewing distance.
+- **Runs at 100Hz, not 120Hz, and that is now confirmed as the KVM's ceiling** (2026-08-26, tested on the MacBook Pro — macOS offers no 120Hz mode through the KVM). HDMI 2.0 bandwidth limit, exactly as the analysis in `docs/Monitor Comparison.md` predicted. Not a defect and not worth chasing: 100Hz matches the work monitor. Any machine that genuinely needs 120Hz can take a Dell HDMI 2.1 input directly instead.
+- **The KVM's second head is now surplus.** The NAWEN KC-KVM202AS-NA is a 2-computer/2-monitor unit; only one head is in use. If it ever gets replaced for HDMI 2.1, a single-head unit is cheaper and more available.
+- **Mini connects by HDMI, not USB-C (decided 2026-08-26).** The mini is mains-powered so it gains nothing from the Dell's 65W USB-C PD, and the Dell's HDMI 2.1 inputs carry 3440×1440@120 on their own. **This frees a rear Thunderbolt 4 port** — relevant to the UGREEN 40Gbps enclosure in the Storage section, which needs a full TB4/USB4 port for its ~3600MB/s. Planned rear TB4 use is then: Anker hub (1), UGREEN enclosure (1), one spare; Magic Keyboard can live on a front USB-C port.
+- **MacBook Pro stays on the Dell's USB-C input** — single cable for video, audio, and 65W charging.
+- **Open decision — video through the KVM, or straight into the monitor's own inputs?** With one display, the Dell's 3 inputs (2× HDMI 2.1 + USB-C) can host all three machines directly and switch via the monitor's input button, which recovers full 120Hz and removes the EDID/bandwidth question entirely. Cost: the KVM's one-button switching for video. Hybrid option — KVM keeps keyboard/mouse/USB duty, monitor handles video switching.
+- **Open decision — what happens to the two LGs** (keep the 29" as a spare, retire both, or relocate). The uni USB-C-to-HDMI cable (ASIN B075V5JK36) that fed the 24" becomes spare either way.
+
+_Superseded dual-display plan (pre-2026-08-26), retained for reference:_
+- ~~**Primary — LG 29WN600-W** (29" 21:9 UltraWide, 2560×1080 IPS, HDR10, FreeSync) → mini's **native HDMI port**, straight cable, no adapter (the USB-C→HDMI cable's adapter chip doesn't offer this native resolution, confirmed by testing)~~
+- ~~**Secondary — LG 24ML600M-B** (24" FHD 1920×1080 IPS) → **uni USB-C-to-HDMI cable** (ASIN B075V5JK36, active chip, 4K@60Hz) from a rear Thunderbolt port~~
+- ~~Both feed the KVM's two HDMI inputs, same as the other two machines already on it~~
+- KVM confirmed capable of native 2560×1080 today via both the Windows PC and the MacBook Pro — still true, and now also confirmed to pass native 3440×1440
 - If a refresh-rate/fuzzy-text problem shows up on any leg: swap to an **active-chipset adapter** (Pluggable brand confirmed fixed a 50Hz cap → steady 75Hz on the MacBook Pro's DP-to-HDMI leg on this same KVM)
 
 ## Audio
 - **Retiring the passive Mackie Big Knob** monitor controller from the chain — no longer part of the setup.
 - **Mac mini's audio → Focusrite Scarlett 8i6** (already on the Anker hub, see Hardware section above).
-- **MacBook Pro's audio → LG 29WN600-W built-in speakers**, used for conference calls.
+- **MacBook Pro's audio → Dell S3425DW built-in speakers** over the USB-C leg, used for conference calls. **Confirmed working 2026-08-26** — replaces the LG 29WN600-W's speakers, and David rates them noticeably better. The single-monitor switch did not cost an audio output; it upgraded one.
 - **`focusrite-custom-mix.ff`** (this folder, renamed 2026-08-19 from `kemper.ff` for clarity) — Focusrite Control custom mix config (David's custom routing/mixes, originally named for the mix that routes the Kemper's send/return — not a Kemper amp/rig backup, despite the old name). Needs to be imported into Focusrite Control once installed on the Mac mini — confirm the import mechanism works with the macOS build of the app.
 
 ## Migration staging (NAS)
@@ -76,3 +91,7 @@ Replaces the ~8-9 year old Windows desktop (ASUS PRIME H310M-A). Full deliberati
 - **AppleCare** — decide yes/no
 - `storage-cleanup` project's dedup — **done as of 2026-08-19** (canonical Pictures/Videos/Music/Taxes on the NAS)
 - Real-world KVM/display check once the mini is physically plugged in — proven on the other 2 machines, not yet the mini itself
+- ~~Dell S3425DW refresh rate~~ — **resolved 2026-08-26**: 100Hz is the KVM's HDMI 2.0 ceiling, confirmed. Accepted, not a problem
+- **Video switching topology** — KVM vs the monitor's own 3 inputs, now that it's a single display (2026-08-26)
+- **Disposition of the LG 29WN600-W and LG 24ML600M-B** — keep as spares, retire, or relocate (2026-08-26)
+- ~~Conference-call audio output for the MacBook Pro~~ — **resolved 2026-08-26**: running through the Dell's speakers, confirmed better than the LG's
