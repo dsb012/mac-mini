@@ -64,6 +64,8 @@ through in order.
       (`.streamDeckPlugin`) and the `node_modules` gap it documents
 - [ ] Rebuild Stream Deck button profiles using the icon images from
       `Z:\Mac Migration\Stream Deck\` (album art, guitar icons)
+- [ ] Move Cura settings (printers, profiles, materials, scripts) from the Windows
+      PC — see `Cura Settings Migration.md` (last outstanding item as of 2026-09-23)
 - [ ] Rebuild Bome MIDI routing **manually** — the existing Windows config won't
       map cleanly to macOS device/port naming, so this is a from-scratch rebuild,
       not an import. Budget real time for this, not a quick step.
