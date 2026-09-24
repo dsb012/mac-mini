@@ -1,6 +1,13 @@
 # Cura Settings Migration (Windows → Mac mini)
 
-Last outstanding migration item (2026-09-23). Everything else from the runbook is done.
+**Done 2026-09-23.** Windows turned out to be on 5.13 as well (the `5.12` and `4.8`
+folders were leftovers from earlier upgrades), so its settings subfolders were copied
+straight into the Mac's `5.13`, leaving out `cache`, `cura.log*`, `cura.lock`, `plugins`,
+`packages.json` and `plugins.json`. Copied: the Neptune 3 Pro setup, 8 custom profiles,
+6 custom materials and `cura.cfg`. Checked in Cura and it looks right. The pre-copy Mac
+config is saved at `~/Library/Application Support/cura/5.13.bak-2026-09-23` (safe to
+delete once a few prints have gone fine). Plugins to reinstall from the Marketplace:
+Mesh Tools, Settings Guide, Start Optimiser. OctoPrint and Onshape were already installed.
 
 **Current state on the Mac:** UltiMaker Cura **5.13.0** is installed, and its config
 folder (`~/Library/Application Support/cura/5.13`) only has a freshly added

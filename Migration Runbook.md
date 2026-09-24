@@ -59,29 +59,29 @@ through in order.
       apps that need them (e.g. a photo viewer) at the NAS paths, not local storage
 - [ ] Import **`focusrite-custom-mix.ff`** into Focusrite Control (the current one,
       dated 2026-08-14 — ignore the two older `.ff` files that were sitting on the NAS)
-- [ ] Clone the Stream Deck dial plugin repo — `https://github.com/dsb012/streamdeck-focusrite`
+- [x] Clone the Stream Deck dial plugin repo — `https://github.com/dsb012/streamdeck-focusrite`
       (private) — onto the Mac and follow its own `ARCHITECTURE.md` for packaging
       (`.streamDeckPlugin`) and the `node_modules` gap it documents
-- [ ] Rebuild Stream Deck button profiles using the icon images from
+- [x] Rebuild Stream Deck button profiles using the icon images from
       `Z:\Mac Migration\Stream Deck\` (album art, guitar icons)
-- [ ] Move Cura settings (printers, profiles, materials, scripts) from the Windows
-      PC — see `Cura Settings Migration.md` (last outstanding item as of 2026-09-23)
-- [ ] Rebuild Bome MIDI routing **manually** — the existing Windows config won't
+- [x] Move Cura settings (printers, profiles, materials, scripts) from the Windows
+      PC — see `Cura Settings Migration.md` (done 2026-09-23)
+- [x] Rebuild Bome MIDI routing **manually** — the existing Windows config won't
       map cleanly to macOS device/port naming, so this is a from-scratch rebuild,
       not an import. Budget real time for this, not a quick step.
 
 ## Verification — confirm before trusting the setup for real use
 
-- [ ] Custom Stream Deck+ dial plugin talks to Focusrite Control's FC1 socket
+- [x] Custom Stream Deck+ dial plugin talks to Focusrite Control's FC1 socket
       (gain/mute control working)
-- [ ] Kemper connects via real USB audio+MIDI, not falling back to analog
+- [x] Kemper connects via real USB audio+MIDI, not falling back to analog
       through the 8i6
-- [ ] Stream Deck "Midi" plugin actually sends MIDI through the new IAC Driver
+- [x] Stream Deck "Midi" plugin actually sends MIDI through the new IAC Driver
       ports to Bome/DAW as expected
-- [ ] Rig Manager library fully restored — rig count/library matches what was
+- [x] Rig Manager library fully restored — rig count/library matches what was
       on the Windows PC, rigs load onto the Kemper correctly
-- [ ] HD Pro Webcam C920 works in a real video call
-- [ ] Home Assistant still shows correct UPS status (should be unaffected by
+- [x] HD Pro Webcam C920 works in a real video call
+- [x] Home Assistant still shows correct UPS status (should be unaffected by
       the Mac migration since it goes through the NAS, not the Mac — just confirm)
 
 ## Decommission old Windows PC (decided 2026-08-19)
