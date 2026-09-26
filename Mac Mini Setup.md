@@ -57,7 +57,7 @@ Everything installable by script is in [`setup-mac.sh`](setup-mac.sh).
 | Source | Installed |
 |---|---|
 | Homebrew formulae | git, gh, uv (manages Python; no separate `python`), node, mas, bash |
-| Homebrew casks | VS Code, VeraCrypt (`veracrypt-fuse-t`), Focusrite Control, Elgato Stream Deck, UltiMaker Cura, AltTab, iTerm2, Ghostty, Proton VPN, Spotify, Signal, Zoom, OBS, RustDesk, Logi Options+ |
+| Homebrew casks | VS Code, VeraCrypt (`veracrypt-fuse-t`), Focusrite Control, Elgato Stream Deck, UltiMaker Cura, AltTab, iTerm2, Ghostty, Proton VPN, Spotify, noTunes, Signal, Zoom, OBS, RustDesk, Logi Options+ |
 | Mac App Store | Anytune (722444976), Home Assistant (1099568401), Folders (1593644229), plus Apple's GarageBand, iMovie, Keynote, Numbers and Pages |
 | Manual | Bome MIDI Translator Pro (licensed), Kemper driver + Rig Manager, Reolink Client, Rectangle Pro (purchased license), Claude, Google Chrome |
 
@@ -66,7 +66,10 @@ Install notes:
   macFUSE, which requires approving a kernel extension on Apple Silicon.
 - **Chrome - Personal / Chrome - Work** in Applications are Chrome profile shortcuts, not
   separate installs.
-- **Login items:** Claude, Bome MIDI Translator Pro, Rectangle Pro.
+- **Login items:** Claude, Bome MIDI Translator Pro, Rectangle Pro, noTunes.
+- **noTunes:** stops Apple Music launching on the play key or when headphones/Bluetooth connect,
+  and opens **Spotify** instead: `defaults write digital.twisted.noTunes replacement /Applications/Spotify.app`.
+  Runs as a login item (hidden). `setup-mac.sh` sets both up.
 - Not needed on the Mac: WSL/Hyper-V, Visual Studio, VirtualBox, Steam, CyberPower
   PowerPanel, X-Touch config, Focusrite Midi Control, Power Mixer.
 

@@ -77,6 +77,7 @@ CASKS=(
   "ghostty|Ghostty.app"
   "protonvpn|ProtonVPN.app"
   "spotify|Spotify.app"
+  "notunes|noTunes.app"                     # blocks Apple Music; opens Spotify instead (configured below)
   "claude|Claude.app"
   "signal|Signal.app"
   "zoom|zoom.us.app"
@@ -99,6 +100,21 @@ for entry in "${CASKS[@]}"; do
     fail "$token (brew install --cask $token)"
   fi
 done
+
+# ---- 2b. noTunes: open Spotify instead of Apple Music, start at login -----
+log "noTunes"
+if [ -d /Applications/noTunes.app ]; then
+  defaults write digital.twisted.noTunes replacement /Applications/Spotify.app && ok "noTunes → Spotify"
+  if osascript -e 'tell application "System Events" to get the name of every login item' 2>/dev/null | grep -q noTunes; then
+    ok "noTunes login item (already present)"
+  elif osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/noTunes.app", hidden:true}' >/dev/null 2>&1; then
+    ok "noTunes login item"
+  else
+    fail "noTunes login item (System Settings → General → Login Items)"
+  fi
+else
+  skip "noTunes (not installed)"
+fi
 
 # ---- 3. Mac App Store apps -------------------------------------------------
 MAS_APPS=(
