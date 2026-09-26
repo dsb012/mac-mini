@@ -8,9 +8,10 @@ Rebuild from scratch: run [`setup-mac.sh`](setup-mac.sh), then work through
 [Configuration](#configuration).
 
 ## Machine
-- Mac mini: 10-core CPU/GPU, 24GB RAM, 512GB SSD, macOS 27. System reports **Apple M6
-  (Mac18,5)**.
-- Apple order #W1640840367, placed 2026-07-29, $1,270.94.
+- Mac mini **Apple M6** (Mac18,5): 12-core CPU (2 Super, 4 Performance, 6 Efficiency), 12-core
+  GPU, 24GB RAM, 512GB SSD, macOS 27.
+- The original base M4 order (#W1640840367, placed 2026-07-29) arrived the day the M6 was
+  announced. It went back unopened and was replaced with this M6.
 - AppleCare: not purchased (see [Open items](#open-items)).
 
 ## Desk hardware
@@ -113,7 +114,8 @@ Install notes:
         enclosure, which is already bought. It needs a full TB4 port on the mini.
   - [ ] Decide where the 4TB WD40EFAX (old N:, the on-site NAS backup copy) goes.
   - [ ] Clean up the NAS `Mac Migration` staging folder.
-- [ ] **AppleCare:** decide yes/no. The purchase window is limited, typically 60 days.
+- [ ] **AppleCare:** decide yes/no. The purchase window is limited, typically 60 days from
+      the M6's purchase date.
 - [ ] **Cura:** reinstall the Mesh Tools, Settings Guide and Start Optimiser plugins. After a
       few good prints, delete `~/Library/Application Support/cura/5.13.bak-2026-09-23`.
 - [ ] **Video switching:** decide whether to keep it on the KVM (100Hz, one button) or use
