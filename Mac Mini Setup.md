@@ -114,6 +114,10 @@ Install notes:
         enclosure, which is already bought. It needs a full TB4 port on the mini.
   - [ ] Decide where the 4TB WD40EFAX (old N:, the on-site NAS backup copy) goes.
   - [ ] Clean up the NAS `Mac Migration` staging folder.
+- [ ] **Backups: the Mac currently has none** (Google Drive removed 2026-09-26). Set up Time
+      Machine. Recommended target: the 970 EVO in the UGREEN enclosure, attached directly,
+      once it's out of the Windows PC. The NAS isn't a good target: 122GB free vs ~150–200GB
+      needed for the Mac's 97GB of data.
 - [ ] **AppleCare:** decide yes/no. The purchase window is limited, typically 60 days from
       the M6's purchase date.
 - [ ] **Cura:** reinstall the Mesh Tools, Settings Guide and Start Optimiser plugins. After a
