@@ -1,19 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #
-# Mac mini setup — installs everything from Mac Software Setup Checklist.md.
-# Run this ON the Mac mini itself (macOS Terminal), not on the Windows PC.
+# Mac mini setup — installs everything scriptable from "Mac Mini Setup.md".
 #
 #   chmod +x setup-mac.sh
 #   ./setup-mac.sh
 #
-# Safe to re-run: `brew install --cask` skips anything already installed.
+# Safe to re-run: anything already installed (by brew or by hand) is skipped.
+# Written for the stock macOS bash 3.2 — no associative arrays.
 # Nothing here needs sudo except Homebrew's own installer (which prompts you).
 
 set -uo pipefail
-
-# ---- toggles -----------------------------------------------------------
-# Flip to false if you end up not keeping the Logitech Unifying mouse.
-INSTALL_LOGI_OPTIONS=true
 
 # ---- bookkeeping (for the summary at the end) ---------------------------
 OK=()
@@ -47,118 +43,120 @@ fi
 brew update >/dev/null 2>&1 || true
 
 # ---- 1. brew formulae (CLI tools) -----------------------------------------
-declare -A FORMULAE=(
-  ["git"]="git"
-  ["uv"]="uv"   # manages Python versions/venvs itself — no separate python formula needed
+FORMULAE=(
+  git
+  gh
+  uv      # manages Python versions/venvs itself — no separate python formula needed
+  node
+  mas
+  bash
 )
 
 log "Homebrew formulae"
-for name in "${!FORMULAE[@]}"; do
-  token="${FORMULAE[$name]}"
+for token in "${FORMULAE[@]}"; do
   if brew list "$token" >/dev/null 2>&1; then
-    ok "$name (already installed)"
-    continue
-  fi
-  if brew install "$token"; then
-    ok "$name"
+    ok "$token (already installed)"
+  elif brew install "$token"; then
+    ok "$token"
   else
-    fail "$name (brew install $token)"
+    fail "$token (brew install $token)"
   fi
 done
 
 # ---- 2. brew casks --------------------------------------------------------
-# name -> homebrew cask token
-declare -A CASKS=(
-  ["Visual Studio Code"]="visual-studio-code"
-  ["Google Drive"]="google-drive"
-  ["Google Chrome"]="google-chrome"
-  ["VeraCrypt (fuse-t backend)"]="veracrypt-fuse-t"   # pulls in fuse-t automatically — no kernel-extension approval dance like plain macFUSE
-  ["Focusrite Control"]="focusrite-control"            # NOT focusrite-control-2 — confirmed 2026-08-14 this (not Control 2) is what the custom Stream Deck dial plugin's FC1 socket actually needs
-  ["Elgato Stream Deck"]="elgato-stream-deck"
-  ["Ultimaker Cura"]="ultimaker-cura"
-  ["Rectangle"]="rectangle"
-  ["AltTab"]="alt-tab"
-  ["iTerm2"]="iterm2"
-  ["Ghostty"]="ghostty"
-  ["Proton VPN"]="protonvpn"
-  ["Spotify"]="spotify"
-  ["Claude"]="claude"
-  ["Signal"]="signal"
-  ["Zoom"]="zoom"
+# "cask token|app bundle name" — the app name lets us skip apps installed by hand.
+CASKS=(
+  "visual-studio-code|Visual Studio Code.app"
+  "google-drive|Google Drive.app"
+  "google-chrome|Google Chrome.app"
+  "veracrypt-fuse-t|VeraCrypt.app"          # NOT plain veracrypt — fuse-t avoids macFUSE's kernel-extension approval
+  "focusrite-control|Focusrite Control.app" # NOT focusrite-control-2 — the Stream Deck dial plugin needs this app's FC1 socket
+  "elgato-stream-deck|Elgato Stream Deck.app"
+  "ultimaker-cura|UltiMaker Cura.app"
+  "rectangle|Rectangle.app"
+  "alt-tab|AltTab.app"
+  "iterm2|iTerm.app"
+  "ghostty|Ghostty.app"
+  "protonvpn|ProtonVPN.app"
+  "spotify|Spotify.app"
+  "claude|Claude.app"
+  "signal|Signal.app"
+  "zoom|zoom.us.app"
+  "obs|OBS.app"
+  "rustdesk|RustDesk.app"
+  "logi-options+|logioptionsplus.app"
 )
-if [ "$INSTALL_LOGI_OPTIONS" = true ]; then
-  CASKS["Logi Options+"]="logi-options+"
-fi
 
 log "Homebrew casks"
-for name in "${!CASKS[@]}"; do
-  token="${CASKS[$name]}"
+for entry in "${CASKS[@]}"; do
+  token="${entry%%|*}"
+  app="${entry#*|}"
   if brew list --cask "$token" >/dev/null 2>&1; then
-    ok "$name (already installed)"
-    continue
-  fi
-  if brew install --cask "$token"; then
-    ok "$name"
+    ok "$token (already installed)"
+  elif [ -d "/Applications/$app" ]; then
+    ok "$token (already installed outside brew)"
+  elif brew install --cask "$token"; then
+    ok "$token"
   else
-    fail "$name (brew install --cask $token)"
+    fail "$token (brew install --cask $token)"
   fi
 done
 
 # ---- 3. Mac App Store apps -------------------------------------------------
+MAS_APPS=(
+  "722444976|Anytune"            # the Mac product, distinct from the iOS "Anytune Pro" id
+  "1099568401|Home Assistant"
+  "1593644229|Folders"
+)
+
 log "Mac App Store apps (via mas)"
 if ! command -v mas >/dev/null 2>&1; then
-  brew install mas || fail "mas (App Store CLI)"
-fi
-
-if command -v mas >/dev/null 2>&1; then
-  if ! mas account >/dev/null 2>&1; then
-    echo "  Not signed into the App Store. Open the App Store app, sign in, then re-run this script"
-    echo "  (or just install these two manually once signed in):"
-    skip "Home Assistant Companion (id 1099568401) — needs App Store sign-in"
-    skip "Anytune (id 722444976) — needs App Store sign-in"
-  else
-    declare -A MAS_APPS=(
-      ["Home Assistant Companion"]="1099568401"
-      ["Anytune"]="722444976"   # this is the Mac product, distinct from the iOS "Anytune Pro" id
-    )
-    for name in "${!MAS_APPS[@]}"; do
-      id="${MAS_APPS[$name]}"
-      if mas list 2>/dev/null | grep -q "^$id "; then
-        ok "$name (already installed)"
-      elif mas install "$id"; then
-        ok "$name"
-      else
-        fail "$name (mas install $id)"
-      fi
-    done
-  fi
+  for entry in "${MAS_APPS[@]}"; do skip "${entry#*|} — mas unavailable"; done
+elif ! mas account >/dev/null 2>&1; then
+  echo "  Not signed into the App Store. Sign in via the App Store app, then re-run."
+  for entry in "${MAS_APPS[@]}"; do skip "${entry#*|} (id ${entry%%|*}) — needs App Store sign-in"; done
 else
-  skip "Home Assistant Companion — mas unavailable"
-  skip "Anytune — mas unavailable"
+  for entry in "${MAS_APPS[@]}"; do
+    id="${entry%%|*}"
+    name="${entry#*|}"
+    if mas list 2>/dev/null | grep -q "^ *$id "; then
+      ok "$name (already installed)"
+    elif mas install "$id"; then
+      ok "$name"
+    else
+      fail "$name (mas install $id)"
+    fi
+  done
 fi
 
 # ---- 4. Manual downloads ---------------------------------------------------
-# These aren't packaged for brew/mas — proprietary installers and/or license
-# keys involved. Script just opens each vendor page so you can download,
-# log in, and enter your license where needed.
-log "Manual downloads (opening pages in your browser)"
-
-declare -A MANUAL=(
-  ["Kemper macOS driver"]="https://www.kemper-amps.com/downloads"
-  ["Kemper Rig Manager"]="https://www.kemper-amps.com/downloads"
-  ["Bome MIDI Translator Pro (log in for your licensed download)"]="https://www.bome.com/downloads"
-  ["Reolink Client (not on Homebrew)"]="https://reolink.com/us/software-and-manual/"
+# Not packaged for brew/mas (proprietary installers and/or license keys).
+# Opens each vendor page unless the app is already there.
+MANUAL=(
+  "Rig Manager.app|Kemper driver + Rig Manager|https://www.kemper-amps.com/downloads"
+  "Bome MIDI Translator Pro.app|Bome MIDI Translator Pro (log in for the licensed download)|https://www.bome.com/downloads"
+  "Reolink.app|Reolink Client|https://reolink.com/us/software-and-manual/"
+  "Rectangle Pro.app|Rectangle Pro|https://rectangleapp.com/pro"
 )
-for name in "${!MANUAL[@]}"; do
-  url="${MANUAL[$name]}"
-  open "$url" 2>/dev/null && ok "$name (opened $url)" || fail "$name (couldn't open $url)"
+
+log "Manual downloads"
+for entry in "${MANUAL[@]}"; do
+  app="${entry%%|*}"
+  rest="${entry#*|}"
+  name="${rest%%|*}"
+  url="${rest#*|}"
+  if [ -d "/Applications/$app" ]; then
+    ok "$name (already installed)"
+  else
+    open "$url" 2>/dev/null && ok "$name (opened $url)" || fail "$name (couldn't open $url)"
+  fi
 done
 
 # ---- summary ----------------------------------------------------------
 log "Summary"
-echo "Installed OK: ${#OK[@]}"
-echo "Failed:       ${#FAILED[@]}"
-echo "Skipped:      ${#SKIPPED[@]}"
+echo "OK:      ${#OK[@]}"
+echo "Failed:  ${#FAILED[@]}"
+echo "Skipped: ${#SKIPPED[@]}"
 if [ ${#FAILED[@]} -gt 0 ]; then
   printf '\nFailed items:\n'
   printf '  - %s\n' "${FAILED[@]}"
@@ -166,13 +164,11 @@ fi
 
 cat <<'EOF'
 
-Still needs you, by hand:
-  - Kemper: install the macOS driver, then Rig Manager — restore the library from
-    Z:\Mac Migration\2026-08-18 16-09-47 - David.rmbackup via Tools > Restore Rig Manager Content
-  - Bome MIDI Translator Pro: log into your Bome account for the licensed download + key
-  - Reolink Client: download from reolink.com (not packaged for Homebrew)
-  - VeraCrypt (fuse-t): no kernel-extension approval needed (that's the point of the
-    fuse-t backend) — should just work after install
-  - Sign into Google Drive, Google Chrome, Proton VPN, Spotify, and any App Store apps
-    that were skipped
+Still needs you, by hand (details in "Mac Mini Setup.md" → Configuration):
+  - Disable system sleep so the NAS share stays mounted: sudo pmset -a sleep 0
+  - Kemper Rig Manager: Tools > Restore Rig Manager Content from the .rmbackup
+  - Focusrite Control: import focusrite-custom-mix.ff
+  - Audio MIDI Setup: create the 6 IAC Driver ports for the Stream Deck Midi plugin
+  - Bome: rebuild routes; add Bome, Claude and Rectangle Pro as login items
+  - Sign into Google Drive, Chrome, Proton VPN, Spotify, Signal, Zoom
 EOF
