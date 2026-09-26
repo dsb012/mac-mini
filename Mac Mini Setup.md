@@ -48,7 +48,6 @@ Rebuild from scratch: run [`setup-mac.sh`](setup-mac.sh), then work through
 - **SMB share `smb://HomeNAS.local/Share`** mounts at `/Volumes/Share`.
 - **System sleep is disabled** (`sudo pmset -a sleep 0`, set 2026-09-26). Idle sleep was
   dropping the SMB mount overnight. The display still sleeps after 10 minutes.
-- Backup: Google Drive.
 - The `Mac Migration` folder on the NAS was only used to stage the move (Rig Manager
   backup, Stream Deck icons, Cura config).
 
@@ -58,7 +57,7 @@ Everything installable by script is in [`setup-mac.sh`](setup-mac.sh).
 | Source | Installed |
 |---|---|
 | Homebrew formulae | git, gh, uv (manages Python; no separate `python`), node, mas, bash |
-| Homebrew casks | VS Code, Google Drive, VeraCrypt (`veracrypt-fuse-t`), Focusrite Control, Elgato Stream Deck, UltiMaker Cura, AltTab, iTerm2, Ghostty, Proton VPN, Spotify, Signal, Zoom, OBS, RustDesk, Logi Options+ |
+| Homebrew casks | VS Code, VeraCrypt (`veracrypt-fuse-t`), Focusrite Control, Elgato Stream Deck, UltiMaker Cura, AltTab, iTerm2, Ghostty, Proton VPN, Spotify, Signal, Zoom, OBS, RustDesk, Logi Options+ |
 | Mac App Store | Anytune (722444976), Home Assistant (1099568401), Folders (1593644229), plus Apple's GarageBand, iMovie, Keynote, Numbers and Pages |
 | Manual | Bome MIDI Translator Pro (licensed), Kemper driver + Rig Manager, Reolink Client, Rectangle Pro (purchased license), Claude, Google Chrome |
 

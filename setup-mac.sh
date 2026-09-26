@@ -67,7 +67,6 @@ done
 # "cask token|app bundle name" — the app name lets us skip apps installed by hand.
 CASKS=(
   "visual-studio-code|Visual Studio Code.app"
-  "google-drive|Google Drive.app"
   "google-chrome|Google Chrome.app"
   "veracrypt-fuse-t|VeraCrypt.app"          # NOT plain veracrypt — fuse-t avoids macFUSE's kernel-extension approval
   "focusrite-control|Focusrite Control.app" # NOT focusrite-control-2 — the Stream Deck dial plugin needs this app's FC1 socket
@@ -169,5 +168,5 @@ Still needs you, by hand (details in "Mac Mini Setup.md" → Configuration):
   - Focusrite Control: import focusrite-custom-mix.ff
   - Audio MIDI Setup: create the 6 IAC Driver ports for the Stream Deck Midi plugin
   - Bome: rebuild routes; add Bome, Claude and Rectangle Pro as login items
-  - Sign into Google Drive, Chrome, Proton VPN, Spotify, Signal, Zoom
+  - Sign into Chrome, Proton VPN, Spotify, Signal, Zoom
 EOF
