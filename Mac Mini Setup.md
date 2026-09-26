@@ -26,8 +26,9 @@ Rebuild from scratch: run [`setup-mac.sh`](setup-mac.sh), then work through
   so no UPS software is installed on the Mac.
 
 ## Display
-- **Dell S3425DW** only (34", 3440×1440, VA, 1800R curve, 120Hz panel). The two LG monitors
-  are out of the daily setup.
+- **Dell S3425DW** only (34", 3440×1440, VA, 1800R curve, 120Hz panel). The 24" LG moved to
+  the office; the 29" LG is out of the daily setup.
+- **Video switching stays on the KVM** (decided 2026-09-26, working well).
 - **Mac mini → HDMI through the KVM at 100Hz max.** 3440×1440@120 needs ~19 Gbps, which is
   more than the KVM's HDMI 2.0 ceiling (~18 Gbps). To get 120Hz, plug straight into one of
   the Dell's HDMI 2.1 inputs.
@@ -57,9 +58,9 @@ Everything installable by script is in [`setup-mac.sh`](setup-mac.sh).
 | Source | Installed |
 |---|---|
 | Homebrew formulae | git, gh, uv (manages Python; no separate `python`), node, mas, bash |
-| Homebrew casks | VS Code, Google Drive, VeraCrypt (`veracrypt-fuse-t`), Focusrite Control, Elgato Stream Deck, UltiMaker Cura, Rectangle, AltTab, iTerm2, Ghostty, Proton VPN, Spotify, Signal, Zoom, OBS, RustDesk, Logi Options+ |
+| Homebrew casks | VS Code, Google Drive, VeraCrypt (`veracrypt-fuse-t`), Focusrite Control, Elgato Stream Deck, UltiMaker Cura, AltTab, iTerm2, Ghostty, Proton VPN, Spotify, Signal, Zoom, OBS, RustDesk, Logi Options+ |
 | Mac App Store | Anytune (722444976), Home Assistant (1099568401), Folders (1593644229), plus Apple's GarageBand, iMovie, Keynote, Numbers and Pages |
-| Manual | Bome MIDI Translator Pro (licensed), Kemper driver + Rig Manager, Reolink Client, Rectangle Pro, Claude, Google Chrome |
+| Manual | Bome MIDI Translator Pro (licensed), Kemper driver + Rig Manager, Reolink Client, Rectangle Pro (purchased license), Claude, Google Chrome |
 
 Install notes:
 - **VeraCrypt:** use the `veracrypt-fuse-t` cask, not `veracrypt`. Plain VeraCrypt needs
@@ -118,9 +119,5 @@ Install notes:
       the M6's purchase date.
 - [ ] **Cura:** reinstall the Mesh Tools, Settings Guide and Start Optimiser plugins. After a
       few good prints, delete `~/Library/Application Support/cura/5.13.bak-2026-09-23`.
-- [ ] **Video switching:** decide whether to keep it on the KVM (100Hz, one button) or use
-      the Dell's own 3 inputs (120Hz, switch with the monitor's input button).
-- [ ] **LG 29WN600-W and 24ML600M-B:** keep as spares, retire or relocate. The USB-C→HDMI
-      cable that fed the 24" is spare too.
-- [ ] **Rectangle and Rectangle Pro are both installed.** Only Pro launches at login, so
-      remove the free one if Pro is the keeper.
+- [ ] **LG 29WN600-W:** keep as a spare, retire or relocate. (The 24" LG 24ML600M-B went
+      to the office. The USB-C→HDMI cable that fed it is spare.)

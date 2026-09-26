@@ -73,7 +73,6 @@ CASKS=(
   "focusrite-control|Focusrite Control.app" # NOT focusrite-control-2 — the Stream Deck dial plugin needs this app's FC1 socket
   "elgato-stream-deck|Elgato Stream Deck.app"
   "ultimaker-cura|UltiMaker Cura.app"
-  "rectangle|Rectangle.app"
   "alt-tab|AltTab.app"
   "iterm2|iTerm.app"
   "ghostty|Ghostty.app"
