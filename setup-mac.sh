@@ -82,6 +82,8 @@ CASKS=(
   "signal|Signal.app"
   "zoom|zoom.us.app"
   "obs|OBS.app"
+  "stats|Stats.app"                         # CPU/memory/disk/network in the menu bar
+  "iina|IINA.app"                           # plays the OBS multi-track recordings; QuickTime only plays track 1
   "rustdesk|RustDesk.app"
   "logi-options+|logioptionsplus.app"
 )
