@@ -75,8 +75,8 @@ as "USB-A to USB-C" for charging or connecting phones.
 - **Mac mini → HDMI through the KVM at 100Hz max.** 3440×1440@120 needs ~19 Gbps, which is
   more than the KVM's HDMI 2.0 ceiling (~18 Gbps). To get 120Hz, plug straight into one of
   the Dell's HDMI 2.1 inputs.
-- **MacBook Pro → the Dell's USB-C input.** One cable carries video, audio (the Dell's
-  speakers, used for calls) and 65W charging.
+- **MacBook Pro → USB-C → Dell dock → HDMI → the KVM** (the same KVM video path as the mini).
+  Corrected 2026-10-02; an earlier version said the Dell's USB-C input.
 
 ## Audio
 - Mac audio goes out through the **Scarlett 8i6**. The Mackie Big Knob is retired.
@@ -113,7 +113,8 @@ Install notes:
   macFUSE, which requires approving a kernel extension on Apple Silicon.
 - **Chrome - Personal / Chrome - Work** in Applications are Chrome profile shortcuts, not
   separate installs.
-- **Login items:** Claude, Bome MIDI Translator Pro, Rectangle Pro, noTunes.
+- **Login items:** Claude, Bome MIDI Translator Pro, Rectangle Pro, noTunes, Stats (added 2026-10-02 after it
+  didn't come back from restarts; `setup-mac.sh` adds it).
 - **IINA:** video player for the OBS guitar recordings — can switch between the Kemper and Anytune
   audio tracks (**Audio → Audio Track** menu), which QuickTime can't.
 - **noTunes:** stops Apple Music launching on the play key or when headphones/Bluetooth connect,
@@ -141,6 +142,10 @@ Install notes:
   jump to the desktop first, then apply the layout. A Stream Deck Multi Action can do both in one press.
 
 ### Stream Deck+
+- **"Display Reset" key**: recovers the Dell's black screen without rebooting (sleeps the mini; wait 10–15 s,
+  then press a key). It's an **Open** action on `~/Applications/Display Reset.app`, a wrapper that runs
+  [`scripts/display-reset.sh`](scripts/display-reset.sh). Rebuild the wrapper with:
+  `osacompile -o ~/Applications/"Display Reset.app" -e 'do shell script "\"/Users/david/Documents/Home Projects/mac-mini-replacement/scripts/display-reset.sh\" > /dev/null 2>&1 &"'`
 - **Focusrite dial plugin**: [dsb012/streamdeck-focusrite](https://github.com/dsb012/streamdeck-focusrite)
   (private). Package it by following the repo's `ARCHITECTURE.md`.
 - **"Midi" plugin** (`se.trevligaspel.midi.sdPlugin`, Trevliga Spel, from the Elgato

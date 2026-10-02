@@ -118,6 +118,20 @@ else
   skip "noTunes (not installed)"
 fi
 
+# ---- 2c. Stats: start at login (menu-bar monitor; its own toggle didn't stick) ----
+log "Stats"
+if [ -d /Applications/Stats.app ]; then
+  if osascript -e 'tell application "System Events" to get the name of every login item' 2>/dev/null | grep -q Stats; then
+    ok "Stats login item (already present)"
+  elif osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Stats.app", hidden:false}' >/dev/null 2>&1; then
+    ok "Stats login item"
+  else
+    fail "Stats login item (System Settings → General → Login Items)"
+  fi
+else
+  skip "Stats (not installed)"
+fi
+
 # ---- 3. Mac App Store apps -------------------------------------------------
 MAS_APPS=(
   "722444976|Anytune"            # the Mac product, distinct from the iOS "Anytune Pro" id
