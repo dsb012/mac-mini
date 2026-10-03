@@ -113,8 +113,8 @@ Install notes:
   macFUSE, which requires approving a kernel extension on Apple Silicon.
 - **Chrome - Personal / Chrome - Work** in Applications are Chrome profile shortcuts, not
   separate installs.
-- **Login items:** Claude, Bome MIDI Translator Pro, Rectangle Pro, noTunes, Stats (added 2026-10-02 after it
-  didn't come back from restarts; `setup-mac.sh` adds it).
+- **Login items:** Bome MIDI Translator Pro, Rectangle Pro, noTunes, Stats. Stats was added 2026-10-02 after it
+  didn't come back from restarts; `setup-mac.sh` adds it. **Claude is deliberately not a login item.**
 - **IINA:** video player for the OBS guitar recordings — can switch between the Kemper and Anytune
   audio tracks (**Audio → Audio Track** menu), which QuickTime can't.
 - **noTunes:** stops Apple Music launching on the play key or when headphones/Bluetooth connect,
@@ -181,19 +181,31 @@ Install notes:
   [`chronotron-pitch-extraction/`](chronotron-pitch-extraction/Chronotron%20Pitch%20Offsets.md).
 
 ## Open items
-- [ ] **Windows PC fallback** stays powered until **~2026-10-24** (60 days after cutover).
-      After that, decommission it:
-  - [ ] Move the Samsung 970 EVO Plus (old C:) as-is into the UGREEN 40Gbps TB4/USB4
-        enclosure, which is already bought. It needs a full TB4 port on the mini.
-  - [ ] Decide where the 4TB WD40EFAX (old N:, the on-site NAS backup copy) goes.
-  - [ ] Clean up the NAS `Mac Migration` staging folder.
 - [ ] **Backups: the Mac currently has none** (Google Drive removed 2026-09-26). Set up Time
-      Machine. Recommended target: the 970 EVO in the UGREEN enclosure, attached directly,
-      once it's out of the Windows PC. The NAS isn't a good target: 122GB free vs ~150–200GB
-      needed for the Mac's 97GB of data.
-- [ ] **AppleCare:** decide yes/no. The purchase window is limited, typically 60 days from
-      the M6's purchase date.
-- [ ] **Cura:** reinstall the Mesh Tools, Settings Guide and Start Optimiser plugins. After a
-      few good prints, delete `~/Library/Application Support/cura/5.13.bak-2026-09-23`.
+      Machine. Target: the 970 EVO in the UGREEN enclosure (attached since 2026-10-02, 40 Gb/s,
+      ~3.35 GB/s reads). It's being kept **read-only** for now as the Windows fallback, so erasing it
+      for Time Machine is the point of no return. The NAS isn't a good target: 122GB free vs
+      ~150–200GB needed for the Mac's 97GB of data.
+  - [ ] Before erasing: confirm the NAS has everything from the 970's `Users/David` folders
+        (Pictures 248GB, Music 15GB, Documents 9.9GB, Desktop 3.6GB, `dwhelper` 1GB).
+  - [ ] Fit the enclosure's thermal pad (on top of the Samsung label, both films peeled) before the
+        first long backup. Watch the temperature in Stats → Disk (set it to the Samsung); stay < ~70°C.
+- [ ] **AppleCare:** decide yes/no. The purchase window is typically 60 days from the M6's purchase
+      date. Check System Settings → General → AppleCare & Warranty for eligibility.
+- [ ] **Black screen:** test a CEC-less HDMI adapter (BlueRigger B07BFL8TM8) on the KVM's mini input,
+      then the KVM-bypass test if needed. See [Display Black Screen Issue.md](Display%20Black%20Screen%20Issue.md).
+- [ ] **Windows PC decommission.** Its SSD is already out (in the UGREEN enclosure, above).
+  - [x] Windows license captured: Windows 11 Home, OEM System Builder (original Windows 10 key ending
+        CWF7G, not transferable). Full key in `smb://HomeNAS.local/Share/Windows 11 Home Key.txt`.
+  - [ ] Decide where the 4TB WD40EFAX (old N:, the on-site NAS backup copy) goes. **That backup stopped
+        when the PC went down.**
+  - [ ] Decide what happens to the PC itself.
+  - [ ] Clean up the NAS `Mac Migration` staging folder.
 - [ ] **LG 29WN600-W:** keep as a spare, retire or relocate. (The 24" LG 24ML600M-B went
       to the office. The USB-C→HDMI cable that fed it is spare.)
+- [ ] Optional: Rectangle Pro "Guitar" layout shortcut ⌘⇧G clashes with "Go to Folder"; consider ⌃⌥⌘G.
+
+### Done
+- [x] **Cura** fully working (2026-10-03). `~/Library/Application Support/cura/5.13.bak-2026-09-23` (5.8MB) can go.
+- [x] **Spotify** no longer opens at login (its own startup helper turned off, 2026-10-03). noTunes stays.
+- [x] **KVM USB adapter:** keep the rigid UGREEN USB-C → USB-A (female) adapter; no strain on it, so no pigtail.

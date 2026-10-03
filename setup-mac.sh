@@ -199,6 +199,6 @@ Still needs you, by hand (details in "Mac Mini Setup.md" → Configuration):
   - Kemper Rig Manager: Tools > Restore Rig Manager Content from the .rmbackup
   - Focusrite Control: import focusrite-custom-mix.ff
   - Audio MIDI Setup: create the 6 IAC Driver ports for the Stream Deck Midi plugin
-  - Bome: rebuild routes; add Bome, Claude and Rectangle Pro as login items
+  - Bome: rebuild routes; add Bome and Rectangle Pro as login items (not Claude)
   - Sign into Chrome, Proton VPN, Spotify, Signal, Zoom
 EOF
